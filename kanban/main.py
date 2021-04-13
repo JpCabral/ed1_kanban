@@ -1,5 +1,5 @@
 from typing import List
-
+import datetime
 from atividade import *
 from atividade import Atividade
 from responsavel import *
@@ -33,7 +33,11 @@ if __name__ == '__main__':
         if opcao == "1":
             nome = input("Nome:")
             descricao = input("Descrição:")
-            data = input("Data:")
+            try:
+                data = datetime.datetime.strptime(input("Data:"),"%d/%m/%Y")
+            except ValueError:
+                print("Valor inválido, informe a data no padrão (DD/MM/AAAA)...")
+                data = datetime.datetime.strptime(input("Data:"),"%d/%m/%Y")
             nome_responsavel = input ("Responsável:")
             for responsavel in lista_de_responsaveis:
                 if responsavel.Nome == nome_responsavel:
@@ -57,7 +61,7 @@ if __name__ == '__main__':
                 print("\n------------------------------------")
                 print("Nome:",atividade.Nome)
                 print("Descrição:",atividade.Descricao)
-                print("Data:", atividade.Data)
+                print("Data:", atividade.Data.strftime("%d/%m/%Y"))
                 print("Responsável:", atividade.Responsavel.Nome, atividade.Responsavel.Sobrenome)
                 print("Coluna:", atividade.Coluna)
             print("\nPressione enter para continuar...")
