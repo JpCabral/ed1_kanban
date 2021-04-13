@@ -137,4 +137,4 @@ if __name__ == '__main__':
             opcao = False
 
         elif opcao != "":
-            print("\n Selecione uma opção válida (1...7)")
+            print("\n Selecione uma opção válida (1...8)")
