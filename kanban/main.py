@@ -15,7 +15,7 @@ def menu():
           '\n4.Listar responsáveis'
           '\n5.Listar atividades de um responsável'
           '\n6.Cadastrar coluna'
-          '\n7.Atribuir atividade a uma coluna'
+          '\n7.Listar atividades de uma coluna'
           '\n8.Sair'
           '\n')
 
@@ -39,19 +39,22 @@ if __name__ == '__main__':
                 print("Valor inválido, informe a data no padrão (DD/MM/AAAA)...")
                 data = datetime.datetime.strptime(input("Data:"),"%d/%m/%Y")
             nome_responsavel = input ("Responsável:")
+            nome_coluna = input("Coluna:")
+
             for responsavel in lista_de_responsaveis:
                 if responsavel.Nome == nome_responsavel:
                     usuario_responsavel = responsavel
                 break
             else:
                 usuario_responsavel = None
-            nome_coluna = input("Coluna:")
             for coluna in lista_de_colunas:
                 if coluna.Nome == nome_coluna:
                     coluna_atividade = coluna
+                    coluna.Lista_de_atividades.append(criarAtividade(nome, descricao, data, usuario_responsavel, coluna_atividade))
                 break
             else:
                 coluna_atividade = None
+
             lista_de_atividades.append(criarAtividade(nome, descricao, data, usuario_responsavel, coluna_atividade))
             print("\n"+str(len(lista_de_atividades))+"ª atividade criada com sucesso! Pressione enter para continuar...")
             input("")
@@ -62,8 +65,10 @@ if __name__ == '__main__':
                 print("Nome:",atividade.Nome)
                 print("Descrição:",atividade.Descricao)
                 print("Data:", atividade.Data.strftime("%d/%m/%Y"))
-                print("Responsável:", atividade.Responsavel.Nome, atividade.Responsavel.Sobrenome)
-                print("Coluna:", atividade.Coluna)
+                if atividade.Responsavel != None:
+                    print("Responsável:", atividade.Responsavel.Nome, atividade.Responsavel.Sobrenome)
+                if atividade.Coluna != None:
+                    print("Coluna:", atividade.Coluna.Nome)
             print("\nPressione enter para continuar...")
             input("")
 
@@ -98,19 +103,34 @@ if __name__ == '__main__':
                     print("Responsável:", atividade.Responsavel.Nome, atividade.Responsavel.Sobrenome)
                     print("Coluna:", atividade.Coluna)
             else:
-                usuario_responsavel = None
+                print("\n Responsável não encontrado!")
             print("\nPressione enter para continuar...")
             input("")
 
         elif opcao == "6":
             print("\n Cadastrando uma coluna...")
             nome = input("Nome:")
-            lista_de_atividades = False
+            lista_de_atividades = []
             lista_de_colunas.append(criarColuna(nome, lista_de_atividades))
             print("\n"+str(len(lista_de_colunas))+"ª coluna cadastrada com sucesso!")
 
         elif opcao == "7":
-            print("\n Atribuindo atividade a uma coluna...")
+            print("\n Listando atividades de uma determinada coluna...")
+            nome_coluna = input ("Coluna:")
+            for coluna in lista_de_colunas:
+                if coluna.Nome == nome_coluna:
+                    for atividade in coluna.Lista_de_atividades:
+                        print("\n------------------------------------")
+                        print("Nome:",atividade.Nome)
+                        print("Descrição:",atividade.Descricao)
+                        print("Data:", atividade.Data)
+                        print("Responsável:", atividade.Responsavel.Nome, atividade.Responsavel.Sobrenome)
+                        print("Coluna:", atividade.Coluna.Nome)
+                break
+            else:
+                print("\n Coluna não encontrada!")
+            print("\nPressione enter para continuar...")
+            input("")
 
         elif opcao == "8":
             print("\n Até mais!")
