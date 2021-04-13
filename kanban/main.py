@@ -28,7 +28,7 @@ if __name__ == '__main__':
             data = input("Data:")
             nome_responsavel = input ("Responsável:")
             for responsavel in lista_de_responsaveis:
-                if responsavel.nome == nome_responsavel:
+                if responsavel.Nome == nome_responsavel:
                     usuario_responsavel = responsavel
                 break
             else:
@@ -43,7 +43,7 @@ if __name__ == '__main__':
                 print("Nome:",atividade.Nome)
                 print("Descrição:",atividade.Descricao)
                 print("Data:", atividade.Data)
-                print("Responsáveis:", atividade.Lista_de_responsaveis)
+                print("Responsável:", atividade.Responsavel)
                 print("Coluna:", atividade.Coluna)
 
         elif opcao == "3":
