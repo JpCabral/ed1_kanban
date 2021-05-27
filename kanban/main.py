@@ -54,20 +54,20 @@ if __name__ == '__main__':
                 break
             else:
                 coluna_atividade = None
+                lista_de_atividades.append(criarAtividade(nome, descricao, data, usuario_responsavel, coluna_atividade))
 
-            lista_de_atividades.append(criarAtividade(nome, descricao, data, usuario_responsavel, coluna_atividade))
             print("\n"+str(len(lista_de_atividades))+"ª atividade criada com sucesso! Pressione enter para continuar...")
             input("")
 
         elif opcao == "2":
             for atividade in lista_de_atividades:
                 print("\n------------------------------------")
-                print("Nome:",atividade.Nome)
-                print("Descrição:",atividade.Descricao)
+                print("Nome:", atividade.Nome)
+                print("Descrição:", atividade.Descricao)
                 print("Data:", atividade.Data.strftime("%d/%m/%Y"))
-                if atividade.Responsavel != None:
+                if atividade.Responsavel is not None:
                     print("Responsável:", atividade.Responsavel.Nome, atividade.Responsavel.Sobrenome)
-                if atividade.Coluna != None:
+                if atividade.Coluna is not None:
                     print("Coluna:", atividade.Coluna.Nome)
             print("\nPressione enter para continuar...")
             input("")
@@ -86,7 +86,7 @@ if __name__ == '__main__':
             for responsavel in lista_de_responsaveis:
                 print("\n------------------------------------\n")
                 print("Nome:",responsavel.Nome)
-                print("Sobrenome:",responsavel.Sobrenome)
+                print("Sobrenome:", responsavel.Sobrenome)
                 print("Função:", responsavel.Funcao)
             print("\nPressione enter para continuar...")
             input("")
@@ -97,8 +97,8 @@ if __name__ == '__main__':
             for atividade in lista_de_atividades:
                 if atividade.Responsavel.Nome == nome_responsavel:
                     print("\n------------------------------------\n")
-                    print("Nome:",atividade.Nome)
-                    print("Descrição:",atividade.Descricao)
+                    print("Nome:", atividade.Nome)
+                    print("Descrição:", atividade.Descricao)
                     print("Data:", atividade.Data)
                     print("Responsável:", atividade.Responsavel.Nome, atividade.Responsavel.Sobrenome)
                     print("Coluna:", atividade.Coluna)
@@ -121,8 +121,8 @@ if __name__ == '__main__':
                 if coluna.Nome == nome_coluna:
                     for atividade in coluna.Lista_de_atividades:
                         print("\n------------------------------------")
-                        print("Nome:",atividade.Nome)
-                        print("Descrição:",atividade.Descricao)
+                        print("Nome:", atividade.Nome)
+                        print("Descrição:", atividade.Descricao)
                         print("Data:", atividade.Data)
                         print("Responsável:", atividade.Responsavel.Nome, atividade.Responsavel.Sobrenome)
                         print("Coluna:", atividade.Coluna.Nome)
